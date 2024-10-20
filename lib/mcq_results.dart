@@ -1,9 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class MCQResults extends StatelessWidget {
   final String mcqs;
+  final String pdfFilePath; // New parameter for PDF file path
 
-  MCQResults({required this.mcqs});
+  MCQResults({required this.mcqs, required this.pdfFilePath}); // Modify constructor
+
+  Future<void> _downloadPDF() async {
+    final url = Uri.parse(pdfFilePath);
+    if (await canLaunch(url.toString())) {
+      await launch(url.toString());
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -71,6 +82,11 @@ class MCQResults extends StatelessWidget {
             }).toList(),
           ),
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: _downloadPDF,
+        tooltip: 'Download PDF',
+        child: Icon(Icons.file_download),
       ),
     );
   }

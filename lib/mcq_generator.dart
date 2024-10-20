@@ -80,7 +80,10 @@ class _MCQGeneratorState extends State<MCQGenerator> {
         Navigator.push(
           this.context,
           MaterialPageRoute(
-            builder: (context) => MCQResults(mcqs: mcqs),
+            builder: (context) => MCQResults(
+              mcqs: mcqs,
+              pdfFilePath: 'path/to/pdf', // Provide a value for the pdfFilePath parameter
+            ),
           ),
         );
       } else {

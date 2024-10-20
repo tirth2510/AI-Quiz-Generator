@@ -1,0 +1,6 @@
+Flask==2.3.2
+pdfplumber==0.10.2
+python-docx==0.8.11
+Werkzeug==2.3.4
+google-generativeai==0.1.0
+FPDF==1.7.2

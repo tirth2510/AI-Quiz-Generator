@@ -76,8 +76,15 @@ def save_mcqs_to_file(mcqs, num_questions):
     pdf.add_page()
     pdf.set_auto_page_break(auto=True, margin=15)
     pdf.set_font("Arial", size=12)
-    pdf.multi_cell(0, 10, mcqs)
-    pdf.output(pdf_filepath)
+
+    try:
+        print("Generated MCQs:", mcqs)  # Log the generated MCQs
+        pdf.multi_cell(0, 10, mcqs)
+        pdf.output(pdf_filepath)
+        print(f"PDF saved successfully to {pdf_filepath}")
+    except Exception as e:
+        print(f"Error generating PDF: {e}")
+        return txt_filepath, None  # Return None for the PDF path in case of failure
 
     return txt_filepath, pdf_filepath
 
@@ -130,4 +137,4 @@ def download_file(file_type, filename):
     return "File not found", 404
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True, host='0.0.0.0')
