@@ -81,15 +81,11 @@ def save_mcqs_to_file(mcqs, num_questions):
     return txt_filepath, pdf_filepath
 
 @app.route('/generate', methods=['POST'])
-@app.route('/generate', methods=['POST'])
 def generate_mcqs():
-    # Check if the request contains a file
-    if 'file' not in request.files:
-        return "No file part", 400
-
-    file = request.files['file']
-
-    # Check if a valid file is uploaded
+    # Check if a file is included in the request
+    file = request.files.get('file')
+    
+    # Extract text from the uploaded file if present
     if file and allowed_file(file.filename):
         filename = secure_filename(file.filename)
         file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
@@ -99,21 +95,23 @@ def generate_mcqs():
         text = extract_text_from_file(file_path)
         if text is None or text.strip() == "":
             return "Error extracting text from file or empty file", 500
+    else:
+        # If no file is uploaded, check for manual text input
+        text = request.form.get('text')
+        if not text or text.strip() == "":
+            return "No text input provided", 400  # Adjusted error message
 
-        try:
-            num_questions = int(request.form.get('num_questions', 1))  # Default to 1 if not provided
-            mcqs = Question_mcqs_generator(text, num_questions)
+    try:
+        num_questions = int(request.form.get('num_questions', 1))  # Default to 1 if not provided
+        mcqs = Question_mcqs_generator(text, num_questions)
 
-            # Save the generated MCQs to both .txt and .pdf
-            txt_filepath, pdf_filepath = save_mcqs_to_file(mcqs, num_questions)
+        # Save the generated MCQs to both .txt and .pdf
+        txt_filepath, pdf_filepath = save_mcqs_to_file(mcqs, num_questions)
 
-            return jsonify({"mcqs": mcqs, "txt_file": txt_filepath, "pdf_file": pdf_filepath}), 200
-        except Exception as e:
-            print(f"Error generating MCQs: {e}")
-            return "Error generating MCQs", 500
-
-    return "Invalid file format", 400
-
+        return jsonify({"mcqs": mcqs, "txt_file": txt_filepath, "pdf_file": pdf_filepath}), 200
+    except Exception as e:
+        print(f"Error generating MCQs: {e}")
+        return "Error generating MCQs", 500
 
 @app.route('/download/<file_type>/<filename>', methods=['GET'])
 def download_file(file_type, filename):

@@ -37,6 +37,18 @@ class _MCQGeneratorState extends State<MCQGenerator> {
       _isLoading = true;
     });
 
+    // Check if both file and text input are null
+    if (_file == null && (_textInput == null || _textInput!.isEmpty)) {
+      setState(() {
+        _isLoading = false; // Stop loading indicator
+      });
+      // Show error message
+      ScaffoldMessenger.of(context as BuildContext).showSnackBar(
+        SnackBar(content: Text('Please upload a file or enter text.')),
+      );
+      return; // Exit the function
+    }
+
     var request = http.MultipartRequest('POST', Uri.parse('http://10.0.2.2:5000/generate')); // Use this for Android emulator
 
     if (_file != null) {
@@ -46,7 +58,10 @@ class _MCQGeneratorState extends State<MCQGenerator> {
         _file!.path,
         filename: basename(_file!.path),
       ));
-    } else if (_textInput != null && _textInput!.isNotEmpty) {
+    }
+
+    // Only add text input if it exists
+    if (_textInput != null && _textInput!.isNotEmpty) {
       request.fields['text'] = _textInput!;
     }
 
@@ -82,6 +97,14 @@ class _MCQGeneratorState extends State<MCQGenerator> {
     });
   }
 
+  void _deleteFile() {
+    setState(() {
+      _file = null; // Clear the selected file
+      _textInput = null; // Optionally clear text input
+      _textController.clear(); // Clear the text field
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -105,6 +128,12 @@ class _MCQGeneratorState extends State<MCQGenerator> {
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 10.0),
                 child: Text('Selected File: ${basename(_file!.path)}'),
+              ),
+
+            if (_file != null) // Show delete file button only when a file is selected
+              ElevatedButton(
+                onPressed: _deleteFile,
+                child: Text('Delete Selected File'),
               ),
 
             Divider(),

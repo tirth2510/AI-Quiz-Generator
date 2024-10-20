@@ -14,16 +14,9 @@ class MCQResults extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'Here are your generated MCQs:',
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-              ),
-              SizedBox(height: 20),
-              Text(mcqs, style: TextStyle(fontSize: 16)),
-            ],
+          child: SelectableText(
+            mcqs,
+            style: TextStyle(fontSize: 16),
           ),
         ),
       ),
