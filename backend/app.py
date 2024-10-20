@@ -50,7 +50,7 @@ def Question_mcqs_generator(input_text, num_questions):
     - Four answer options (labeled A, B, C, D)
     - The correct answer clearly indicated
     Format:
-    ## MCQ
+    ## MCQ {num_questions}
     Question: [question]
     A) [option A]
     B) [option B]
@@ -60,6 +60,8 @@ def Question_mcqs_generator(input_text, num_questions):
     """
     response = model.generate_content(prompt).text.strip()
     return response
+
+
 
 def save_mcqs_to_file(mcqs, num_questions):
     # Save as .txt file
@@ -129,3 +131,6 @@ def download_file(file_type, filename):
 
 if __name__ == "__main__":
     app.run(debug=True)
+
+
+
