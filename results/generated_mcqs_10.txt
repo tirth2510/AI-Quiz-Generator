@@ -1,0 +1,79 @@
+## MCQ 1
+Question: What celestial object is a planet generally required to orbit?
+A) A black hole 
+B) A galaxy
+C) A star
+D) Another planet
+Correct Answer: C
+
+## MCQ 2
+Question: How many planets are officially recognized in our Solar System?
+A) 4
+B) 8
+C) 9
+D) 12
+Correct Answer: B
+
+## MCQ 3
+Question: Which of the following is NOT a terrestrial planet?
+A) Mercury
+B) Venus
+C) Jupiter
+D) Mars
+Correct Answer: C
+
+## MCQ 4
+Question: Which of the following is a giant planet?
+A) Earth
+B) Mars
+C) Saturn
+D) Venus
+Correct Answer: C
+
+## MCQ 5
+Question: What is the name of the prevailing theory of planet formation?
+A) Big Bang Theory
+B) Nebular hypothesis
+C) Planetary Accretion Model
+D) Stellar Evolution Theory
+Correct Answer: B
+
+## MCQ 6
+Question: What is the initial stage of a star's formation according to the nebular hypothesis?
+A) Brown dwarf
+B) Protostar
+C) Red giant
+D) White dwarf
+Correct Answer: B
+
+## MCQ 7
+Question: What surrounds a young protostar during planet formation?
+A) Asteroid belt
+B) Kuiper belt
+C) Oort cloud
+D) Protoplanetary disk
+Correct Answer: D
+
+## MCQ 8
+Question: What is the primary force driving the accumulation of material during planet formation?
+A) Electromagnetism
+B) Gravity
+C) Nuclear fusion
+D) Weak nuclear force
+Correct Answer: B
+
+## MCQ 9
+Question: What term describes the process of material gradually accumulating to form planets?
+A) Accretion
+B) Condensation
+C) Evaporation
+D) Sublimation
+Correct Answer: A
+
+## MCQ 10
+Question: What characteristic of a planet is described as being "rounded"?
+A) Its atmosphere
+B) Its composition
+C) Its orbit
+D) Its shape
+Correct Answer: D

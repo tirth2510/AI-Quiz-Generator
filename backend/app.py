@@ -41,11 +41,12 @@ def extract_text_from_file(file_path):
             return f.read()
     return None
 
-def Question_mcqs_generator(input_text, num_questions):
+def Question_mcqs_generator(input_text, num_questions, difficulty):
+    # Adjust the prompt based on difficulty level
     prompt = f"""
     You are an AI assistant helping the user generate multiple-choice questions (MCQs) based on the following text:
     '{input_text}'
-    Please generate {num_questions} MCQs from the text. Each question should have:
+    Please generate {num_questions} MCQs with '{difficulty}' difficulty level from the text. Each question should have:
     - A clear question
     - Four answer options (labeled A, B, C, D)
     - The correct answer clearly indicated
@@ -60,8 +61,6 @@ def Question_mcqs_generator(input_text, num_questions):
     """
     response = model.generate_content(prompt).text.strip()
     return response
-
-
 
 def save_mcqs_to_file(mcqs, num_questions):
     # Save as .txt file
@@ -86,7 +85,7 @@ def save_mcqs_to_file(mcqs, num_questions):
 def generate_mcqs():
     # Check if a file is included in the request
     file = request.files.get('file')
-    
+
     # Extract text from the uploaded file if present
     if file and allowed_file(file.filename):
         filename = secure_filename(file.filename)
@@ -105,7 +104,8 @@ def generate_mcqs():
 
     try:
         num_questions = int(request.form.get('num_questions', 1))  # Default to 1 if not provided
-        mcqs = Question_mcqs_generator(text, num_questions)
+        difficulty = request.form.get('difficulty', 'Easy')  # Default to 'Easy'
+        mcqs = Question_mcqs_generator(text, num_questions, difficulty)
 
         # Save the generated MCQs to both .txt and .pdf
         txt_filepath, pdf_filepath = save_mcqs_to_file(mcqs, num_questions)
@@ -131,6 +131,3 @@ def download_file(file_type, filename):
 
 if __name__ == "__main__":
     app.run(debug=True)
-
-
-

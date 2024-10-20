@@ -16,6 +16,7 @@ class _MCQGeneratorState extends State<MCQGenerator> {
   String? _textInput;
   int _numQuestions = 1;
   bool _isLoading = false;
+  String _difficultyLevel = 'Easy'; // Default difficulty level
 
   final TextEditingController _textController = TextEditingController();
 
@@ -27,7 +28,8 @@ class _MCQGeneratorState extends State<MCQGenerator> {
     if (result != null) {
       setState(() {
         _file = File(result.files.single.path!);
-        print("Picked file path: ${_file!.path}"); // Debugging: Check file path
+        _textInput = null; // Clear text input when a file is picked
+        _textController.clear(); // Clear the text field
       });
     }
   }
@@ -43,16 +45,15 @@ class _MCQGeneratorState extends State<MCQGenerator> {
         _isLoading = false; // Stop loading indicator
       });
       // Show error message
-      ScaffoldMessenger.of(context as BuildContext).showSnackBar(
+      ScaffoldMessenger.of(this.context).showSnackBar(
         SnackBar(content: Text('Please upload a file or enter text.')),
       );
       return; // Exit the function
     }
 
-    var request = http.MultipartRequest('POST', Uri.parse('http://10.0.2.2:5000/generate')); // Use this for Android emulator
+    var request = http.MultipartRequest('POST', Uri.parse('http://10.0.2.2:5000/generate'));
 
     if (_file != null) {
-      print('Uploading file: ${_file!.path}');  // Debugging: Confirm file upload
       request.files.add(await http.MultipartFile.fromPath(
         'file',
         _file!.path,
@@ -66,6 +67,7 @@ class _MCQGeneratorState extends State<MCQGenerator> {
     }
 
     request.fields['num_questions'] = _numQuestions.toString();
+    request.fields['difficulty'] = _difficultyLevel; // Add difficulty level to the request
 
     try {
       var response = await request.send();
@@ -73,9 +75,6 @@ class _MCQGeneratorState extends State<MCQGenerator> {
         var responseBody = await response.stream.bytesToString();
         final Map<String, dynamic> jsonResponse = jsonDecode(responseBody);
         String mcqs = jsonResponse['mcqs'];
-
-        // Print MCQs to the debug console
-        print('Generated MCQs: $mcqs');
 
         // Navigate to MCQResults screen with the generated MCQs
         Navigator.push(
@@ -86,7 +85,7 @@ class _MCQGeneratorState extends State<MCQGenerator> {
         );
       } else {
         var responseBody = await response.stream.bytesToString();
-        print('Error: ${response.statusCode}, Details: $responseBody'); // Debugging: Show error response
+        print('Error: ${response.statusCode}, Details: $responseBody');
       }
     } catch (e) {
       print('Failed to generate MCQs: $e');
@@ -130,28 +129,33 @@ class _MCQGeneratorState extends State<MCQGenerator> {
                 child: Text('Selected File: ${basename(_file!.path)}'),
               ),
 
-            if (_file != null) // Show delete file button only when a file is selected
+            if (_file != null)
               ElevatedButton(
                 onPressed: _deleteFile,
                 child: Text('Delete Selected File'),
               ),
 
-            Divider(),
-
-            // Text Input
-            TextFormField(
-              controller: _textController,
-              maxLines: 6,
-              decoration: InputDecoration(
-                hintText: 'Or enter text directly',
-                border: OutlineInputBorder(),
+            if (_file == null)
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Divider(),
+                  // Text Input
+                  TextFormField(
+                    controller: _textController,
+                    maxLines: 6,
+                    decoration: InputDecoration(
+                      hintText: 'Or enter text directly',
+                      border: OutlineInputBorder(),
+                    ),
+                    onChanged: (value) {
+                      setState(() {
+                        _textInput = value;
+                      });
+                    },
+                  ),
+                ],
               ),
-              onChanged: (value) {
-                setState(() {
-                  _textInput = value;
-                });
-              },
-            ),
 
             SizedBox(height: 20),
 
@@ -169,6 +173,27 @@ class _MCQGeneratorState extends State<MCQGenerator> {
                   _numQuestions = int.tryParse(value) ?? 1;
                 });
               },
+            ),
+
+            SizedBox(height: 20),
+
+            // Difficulty Level Dropdown
+            Text('Select Difficulty Level', style: TextStyle(fontSize: 16)),
+            SizedBox(height: 10),
+            DropdownButton<String>(
+              value: _difficultyLevel,
+              onChanged: (String? newValue) {
+                setState(() {
+                  _difficultyLevel = newValue!;
+                });
+              },
+              items: <String>['Easy', 'Medium', 'Hard']
+                  .map<DropdownMenuItem<String>>((String value) {
+                return DropdownMenuItem<String>(
+                  value: value,
+                  child: Text(value),
+                );
+              }).toList(),
             ),
 
             SizedBox(height: 30),

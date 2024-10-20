@@ -1,39 +1,39 @@
 ## MCQ 1
-Question: What is the most widely accepted theory for planet formation?
-A) Planetary Collision Theory 
-B) Nebular Hypothesis
-C) Stellar Evolution Theory
-D) Accretion Disk Model
-Correct Answer: B
+**Question:**  What is the name of the theory explaining planet formation?
+A) Interstellar Cloud Theory 
+B) Protostar Hypothesis
+C) Nebular Hypothesis 
+D) Accretion Theory
+**Correct Answer:** C
 
-## MCQ 2
-Question:  What characteristic differentiates a planet from a star or brown dwarf?
-A) Size 
-B) Composition
-C)  Orbit
-D) Temperature 
-Correct Answer: C
+## MCQ 2 
+**Question:** What type of celestial body is a planet generally required to orbit?
+A) Black hole
+B) Asteroid
+C) Star
+D) Comet
+**Correct Answer:** C
 
-## MCQ 3 
-Question: Which of the following is NOT a characteristic of a planet?
-A) Rounded shape
-B) Orbits a star, stellar remnant, or brown dwarf
-C) Emits its own light
-D) Formed through accretion 
-Correct Answer: C
+## MCQ 3
+**Question:**  How many planets are in our Solar System, according to the strictest definition?
+A) 4
+B) 8
+C) 9
+D) 12
+**Correct Answer:** B
 
 ## MCQ 4
-Question:  Which of the following is a terrestrial planet in our solar system?
-A) Jupiter
-B) Saturn 
-C) Uranus
-D) Mars
-Correct Answer: D
+**Question:** Which of the following is NOT a terrestrial planet?
+A) Venus
+B) Mars
+C) Jupiter
+D) Earth 
+**Correct Answer:** C
 
-## MCQ 5
-Question: What is the process called by which planets grow within a protoplanetary disk?
+## MCQ 5 
+**Question:** What is the process called where material gradually accumulates to form planets?
 A) Sublimation
-B)  Condensation
-C)  Accretion
-D) Fission
-Correct Answer: C
+B) Condensation
+C) Accretion
+D) Evaporation
+**Correct Answer:** C
