@@ -1,0 +1,49 @@
+## MCQ 1
+**Question:** What is the main purpose of the text?
+
+A) To explain the history of lorem ipsum text.
+B) To showcase the benefits of sharedfilespro.com.
+C) To provide a detailed analysis of Latin literature. 
+D) To demonstrate the layout and design of a product brochure.
+
+**Correct Answer:** D) To demonstrate the layout and design of a product brochure.
+
+## MCQ 2
+**Question:** According to the text, what improves reading comprehension?
+
+A) Reading quickly 
+B) Reading frequently
+C) Reading silently
+D) Reading aloud
+
+**Correct Answer:** B) Reading frequently
+
+## MCQ 3
+**Question:** The phrase "Nam liber tempor" is used in the text to:
+
+A) Introduce a new product feature.
+B) Explain a complex technical concept.
+C) Provide an example of lorem ipsum text.
+D) Argue for the importance of clear writing.
+
+**Correct Answer:** C) Provide an example of lorem ipsum text.
+
+## MCQ 4
+**Question:**  What is the contact number provided in the brochure?
+
+A) (123)-456-7890
+B) 123 Your Street
+C) September 04, 20XX
+D) sharedfilespro.com
+
+**Correct Answer:** A) (123)-456-7890
+
+## MCQ 5
+**Question:** What is the website mentioned repeatedly in the text?
+
+A) YourCompany.com
+B) 123YourStreet.com
+C) sharedfilespro.com
+D) Loremipsum.com
+
+**Correct Answer:** C) sharedfilespro.com

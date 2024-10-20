@@ -27,6 +27,7 @@ class _MCQGeneratorState extends State<MCQGenerator> {
     if (result != null) {
       setState(() {
         _file = File(result.files.single.path!);
+        print("Picked file path: ${_file!.path}"); // Debugging: Check file path
       });
     }
   }
@@ -39,6 +40,7 @@ class _MCQGeneratorState extends State<MCQGenerator> {
     var request = http.MultipartRequest('POST', Uri.parse('http://10.0.2.2:5000/generate')); // Use this for Android emulator
 
     if (_file != null) {
+      print('Uploading file: ${_file!.path}');  // Debugging: Confirm file upload
       request.files.add(await http.MultipartFile.fromPath(
         'file',
         _file!.path,
@@ -68,7 +70,8 @@ class _MCQGeneratorState extends State<MCQGenerator> {
           ),
         );
       } else {
-        print('Error: ${response.statusCode}');
+        var responseBody = await response.stream.bytesToString();
+        print('Error: ${response.statusCode}, Details: $responseBody'); // Debugging: Show error response
       }
     } catch (e) {
       print('Failed to generate MCQs: $e');

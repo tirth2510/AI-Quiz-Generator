@@ -27,8 +27,12 @@ def allowed_file(filename):
 
 def extract_text_from_file(file_path):
     if file_path.endswith('.pdf'):
-        with pdfplumber.open(file_path) as pdf:
-            return "\n".join(page.extract_text() for page in pdf.pages if page.extract_text())
+        try:
+            with pdfplumber.open(file_path) as pdf:
+                return "\n".join(page.extract_text() for page in pdf.pages if page.extract_text())
+        except Exception as e:
+            print(f"Error extracting text from PDF: {e}")
+            return None
     elif file_path.endswith('.docx'):
         doc = docx.Document(file_path)
         return "\n".join([para.text for para in doc.paragraphs])
@@ -77,13 +81,15 @@ def save_mcqs_to_file(mcqs, num_questions):
     return txt_filepath, pdf_filepath
 
 @app.route('/generate', methods=['POST'])
+@app.route('/generate', methods=['POST'])
 def generate_mcqs():
-    if 'file' not in request.files and 'text' not in request.form:
-        return "No file part or text input", 400
+    # Check if the request contains a file
+    if 'file' not in request.files:
+        return "No file part", 400
 
-    file = request.files.get('file')
-    text = request.form.get('text')
+    file = request.files['file']
 
+    # Check if a valid file is uploaded
     if file and allowed_file(file.filename):
         filename = secure_filename(file.filename)
         file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
@@ -91,17 +97,23 @@ def generate_mcqs():
 
         # Extract text from the uploaded file
         text = extract_text_from_file(file_path)
+        if text is None or text.strip() == "":
+            return "Error extracting text from file or empty file", 500
 
-    if text:
-        num_questions = int(request.form['num_questions'])
-        mcqs = Question_mcqs_generator(text, num_questions)
+        try:
+            num_questions = int(request.form.get('num_questions', 1))  # Default to 1 if not provided
+            mcqs = Question_mcqs_generator(text, num_questions)
 
-        # Save the generated MCQs to both .txt and .pdf
-        txt_filepath, pdf_filepath = save_mcqs_to_file(mcqs, num_questions)
+            # Save the generated MCQs to both .txt and .pdf
+            txt_filepath, pdf_filepath = save_mcqs_to_file(mcqs, num_questions)
 
-        return jsonify({"mcqs": mcqs, "txt_file": txt_filepath, "pdf_file": pdf_filepath}), 200
+            return jsonify({"mcqs": mcqs, "txt_file": txt_filepath, "pdf_file": pdf_filepath}), 200
+        except Exception as e:
+            print(f"Error generating MCQs: {e}")
+            return "Error generating MCQs", 500
 
-    return "Invalid file format or no text provided", 400
+    return "Invalid file format", 400
+
 
 @app.route('/download/<file_type>/<filename>', methods=['GET'])
 def download_file(file_type, filename):
