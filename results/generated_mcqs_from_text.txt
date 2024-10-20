@@ -1,0 +1,39 @@
+## MCQ 1
+**Question:** What is the most widely accepted theory for planet formation?
+A) Accretion model
+B) Nebular hypothesis
+C) Protostar theory
+D) Gravitational collapse model
+**Correct Answer:** B) Nebular hypothesis 
+
+## MCQ 2
+**Question:** According to the text, what type of celestial body is NOT considered a planet?
+A) A star
+B) A brown dwarf
+C) A stellar remnant
+D) All of the above
+**Correct Answer:** D) All of the above
+
+## MCQ 3
+**Question:** Which of the following is NOT a characteristic of a planet?
+A) It is generally required to orbit a star, stellar remnant, or brown dwarf.
+B) It is a large, rounded astronomical body.
+C) It emits its own light.
+D) It forms through a process called accretion.
+**Correct Answer:** C) It emits its own light.
+
+## MCQ 4
+**Question:**  How many planets are recognized in our solar system under the most restrictive definition?
+A) Four
+B) Six
+C) Eight 
+D) Nine
+**Correct Answer:** C) Eight 
+
+## MCQ 5
+**Question:** What is the process called where material gradually accumulates under gravity to form planets?
+A) Nebular collapse
+B) Accretion
+C) Protostar formation
+D) Gravitational pull
+**Correct Answer:** B) Accretion
