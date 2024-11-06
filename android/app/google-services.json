@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "55583056032",
+    "project_id": "aiquizgenerator-b8817",
+    "storage_bucket": "aiquizgenerator-b8817.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:55583056032:android:ecab0078a0568cafa529c5",
+        "android_client_info": {
+          "package_name": "com.example.mcqapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "55583056032-bnb0f46q9na67q051prd4hs7rt290s0j.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.mcqapp",
+            "certificate_hash": "3807a981f6d004c30f418c837e1d39fcaf895fb2"
+          }
+        },
+        {
+          "client_id": "55583056032-es7vab0ahjmcgvigqluqi8jkptd1nab4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDCkBJvSLKsOQ5XutFz3EeqHaQENp6GjKM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "55583056032-es7vab0ahjmcgvigqluqi8jkptd1nab4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
